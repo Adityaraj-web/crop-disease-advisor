@@ -3,12 +3,12 @@ fastapi==0.115.5
 uvicorn[standard]==0.32.1
 
 # ML / inference
-tensorflow==2.20.0
-numpy>=1.26.4
+tensorflow==2.16.1
+numpy==1.26.4
 pillow==11.0.0
 
 # HTTP client (weather API)
-httpx>=0.27.0,<0.28.0
+httpx==0.27.2
 
 # LLM
 ollama==0.4.4
