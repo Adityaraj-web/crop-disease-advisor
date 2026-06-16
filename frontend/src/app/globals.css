@@ -1,0 +1,327 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600;1,9..144,700;1,9..144,800&family=Inter:wght@300;400;500;600;700&display=swap");
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@import "tailwindcss";
+
+/* ─── CSS Variables ─────────────────────────────────────────── */
+:root {
+  /* Surfaces */
+  --surface-base: #0a0f0a;
+  --surface-raised: #0f1a0f;
+  --surface-elevated: #162116;
+  --surface-border: rgba(255, 255, 255, 0.08);
+
+  /* Green */
+  --green-accent: #4ade80;
+  --green-deep: #166534;
+  --green-muted: #22c55e;
+  --green-dim: rgba(74, 222, 128, 0.12);
+
+  /* Amber */
+  --amber-accent: #f59e0b;
+  --amber-deep: #92400e;
+  --amber-dim: rgba(245, 158, 11, 0.12);
+
+  /* Red */
+  --red-accent: #ef4444;
+  --red-dim: rgba(239, 68, 68, 0.12);
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.55);
+  --text-muted: rgba(255, 255, 255, 0.35);
+  --text-disabled: rgba(255, 255, 255, 0.20);
+
+  /* Spacing rhythm */
+  --gap-xs: 8px;
+  --gap-sm: 12px;
+  --gap-md: 16px;
+  --gap-lg: 24px;
+  --gap-xl: 32px;
+  --gap-2xl: 48px;
+  --gap-3xl: 64px;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* ─── Base Reset ────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Force dark — no system preference override */
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--surface-base);
+  color: var(--text-primary);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent horizontal scroll from marquee */
+  overflow-x: hidden;
+}
+
+/* ─── Selection ─────────────────────────────────────────────── */
+::selection {
+  background-color: rgba(74, 222, 128, 0.25);
+  color: #ffffff;
+}
+
+/* ─── Scrollbar — thin, dark ────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-base);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* ─── Focus ring — keyboard accessible ─────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--green-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Top accent bar ────────────────────────────────────────── */
+/* Applied via a ::before on <html> through the navbar component.
+   Defined here so the color token is centralised. */
+.top-accent-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--green-accent) 30%,
+    var(--green-accent) 70%,
+    transparent 100%
+  );
+  z-index: 999;
+  animation: bar-shimmer 3s ease-in-out infinite;
+}
+
+/* ─── Typography utilities ──────────────────────────────────── */
+.font-display {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+}
+
+.font-mono-data {
+  font-family: "Geist Mono", "JetBrains Mono", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Instrument panel labels — used throughout scan page */
+.label-instrument {
+  font-family: "Geist Mono", monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(74, 222, 128, 0.6);
+}
+
+/* ─── Surface utilities ─────────────────────────────────────── */
+.surface-raised {
+  background-color: var(--surface-raised);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+}
+
+.surface-elevated {
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+}
+
+/* ─── Upload zone dashed border animation ───────────────────── */
+@keyframes dash-offset {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -200;
+  }
+}
+
+.upload-zone-border {
+  animation: dash-offset 6s linear infinite;
+}
+
+/* ─── Float animation — phone mockup ───────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ─── Marquee ───────────────────────────────────────────────── */
+@keyframes marquee-ltr {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-ltr 40s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Dot travel — process strip connector ──────────────────── */
+@keyframes dot-travel {
+  0%   { left: 0%;   opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+.connector-dot {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--green-accent);
+  animation: dot-travel 2.4s ease-in-out infinite;
+}
+
+/* ─── Confidence arc ────────────────────────────────────────── */
+.arc-ring {
+  transform: rotate(-220deg);
+  transform-origin: center;
+}
+
+/* ─── Advisory panel slide-up ───────────────────────────────── */
+/* Framer Motion handles the actual animation.
+   This class sets the static resting state. */
+.advisory-panel {
+  border-top: 1px solid var(--surface-border);
+  background-color: var(--surface-raised);
+}
+
+/* ─── Typewriter cursor ─────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.typewriter-cursor::after {
+  content: "▊";
+  font-family: "Geist Mono", monospace;
+  font-size: 0.85em;
+  color: var(--green-accent);
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+/* ─── Scan page grid background (hero section) ──────────────── */
+.hero-grid-bg {
+  background-image: radial-gradient(
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px
+    ),
+    radial-gradient(ellipse 800px 600px at 30% 50%, rgba(22, 101, 52, 0.15) 0%, transparent 70%);
+  background-size: 40px 40px, 100% 100%;
+}
+
+/* ─── Shimmer skeleton ──────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--surface-raised) 25%,
+    var(--surface-elevated) 50%,
+    var(--surface-raised) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+
+/* ─── Reduce motion ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: var(--surface-base);
+    color: var(--text-primary);
+  }
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+}
