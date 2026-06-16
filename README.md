@@ -116,7 +116,6 @@ BACKEND_URL=http://localhost:8000
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
@@ -147,12 +146,7 @@ First end-to-end ML project. Key takeaways:
 
 ---
 
-## License
 
-MIT
-
----
 
 <div align="center">
-Built by <a href="https://github.com/Adityaraj-web">Adityaraj Paul</a> · B.Tech Applied Electronics & Instrumentation · Heritage Institute of Technology, Kolkata
-</div>
+Built by <a href="https://github.com/Adityaraj-web">Adityaraj Paul</a>
